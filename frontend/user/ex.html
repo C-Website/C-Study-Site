@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang = "ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>プログラム実行の為の準備</title>
+</head>
+<body>
+    <h1>プログラムを実行するためのベースを作ってみよう!!!</h1>
+    <img src="code memo/ex0.png" alt="０章のコード" align="left">
+    <br>  左に表示されているコードを下にある枠の中に真似して書いてみましょう！！
+        <br>C言語においてすべてのコードのもとになるものです。
+        <br>現時点ではプログラムを実行するためのおまじないのようなものだと考えてください。
+    <br clear="left">
+    <div class="source-container">
+        <textarea id = "source-area"></textarea><br>
+        <button type ="button" id="play-programs">送信！</button>
+    </div>
+    <div class="out-container">
+        <h3>入力欄</h3>
+        <textarea class="content-box" id="stdin-box"></textarea>
+        <h3>出力欄</h3>
+        <div class="content-box" id="out-area">
+            <p></p>
+        </div>
+        <h3>合否</h3>
+        <div class = "content-box" id="answer-area">
+            <p></p>
+        </div>
+    </div>
+    <script src="./wandbox_get.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
+
