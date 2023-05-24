@@ -39,43 +39,25 @@ class Question_main(Base):
         return question_main
     
 
-class Exam_sentence(Base):
+class Text_body(Base):
         
-    __tablename__ = 'example'
+    __tablename__ = 'text_body'
     
     id = Column(Integer, primary_key=True)
     genre_id = Column(Integer, primary_key=True)
     example_question = Column(Text)
-    example_answer = Column(Text)
+    main_question = Column(Text)
     
     def to_dict(self):
-        exam_sentence = {
+        text_body = {
             "id": self.id,
             "genre_id": self.genre_id,
             "example_question": self.example_question,
             "example_answer": self.example_answer
         }
     
-        return exam_sentence
-    
-class Text_body(Base):
-    
-    __tablename__ = "answer"
-    
-    id = Column(Integer, primary_key=True)
-    genre_id = Column(Integer, primary_key=True)
-    text_question = Column(Text)
-    text_answer = Column(Text)
-    
-    def to_dict(self):
-        text_body = {
-            "id": self.id,
-            "genre_id": self.genre_id,
-            "text_question": self.text_question,
-            "text_answer": self.text_answer
-        }
-        
         return text_body
+
     
 def create_database():
     Base.metadata.create_all(bind=Engine)
