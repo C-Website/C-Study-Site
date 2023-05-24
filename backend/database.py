@@ -53,7 +53,7 @@ class Text_body(Base):
             "id": self.id,
             "genre_id": self.genre_id,
             "example_question": self.example_question,
-            "example_answer": self.example_answer
+            "main_question": self.main_question
         }
     
         return text_body
