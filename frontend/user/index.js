@@ -74,3 +74,6 @@ $play_button.addEventListener('click',async()=>{
     console.log(error);
    });
 });
+function backbotton(){
+window.open("index.html","","");//ページ移動をする
+}
