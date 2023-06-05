@@ -1,0 +1,75 @@
+body{
+    background-color: greenyellow;
+}
+.content-box{
+    background-color: #fff;
+    padding: 0.5em 1em;
+    margin: 0 0 0 0;
+    min-height:30px;
+    font-weight: bold;
+    border: solid 3px #000000;
+}
+
+#out-area p {
+    margin: 0;
+    padding: 0;
+}
+
+#source-area{
+    resize: none;
+    color:  #fff;
+    background-color: #000000;
+    width:  80%;
+    min-width: 450px;
+    height:350px;
+}
+
+#stdin-box{
+    resize: none;
+}
+
+.source-container{
+    float: left;
+    height: 100%;
+    width: 70%
+}
+
+.out-container{
+    float:right;
+    height: 100%;
+    width: 30%;
+}
+.button{
+    font-size: 1.0rem;
+    font-weight: 700;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    letter-spacing: 0.1em;
+    color: #fff;
+    border-radius: 0.5rem;
+    background-color: #ebbc00;
+    right: 1000px;
+    bottom: -50px;
+}
+.sousin{
+    font-size: 1.0rem;
+    font-weight: 700;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    letter-spacing: 0.1em;
+    color: #fff;
+    border-radius: 0.5rem;
+    background-color: #ebbc00;
+    right:3px;
+}
+
