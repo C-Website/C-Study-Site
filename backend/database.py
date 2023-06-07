@@ -23,7 +23,7 @@ class Question_main(Base):
     id = Column(Integer, primary_key=True)
     genre_id = Column(Integer)
     title = Column(String(20))
-    explanation = Column(Text)
+    explanation = Column(String(30))
     
     def to_dict(self):
         question_main = {
@@ -35,7 +35,7 @@ class Question_main(Base):
         
         if self.explanation:
             question_main["explanation"] = self.explanation
-            
+        
         return question_main
     
 
@@ -59,21 +59,6 @@ class Question_sub(Base):
         }
     
         return question_sub
-
-class Genre(Base):
-    
-    __tablename__ = 'genre'
-    
-    genre_id = Column(Integer, primary_key=True,autoincrement=True)
-    question_genre = Column(Text)
-    
-    def to_dict(self):
-        genre = {
-            "genre_id": self.genre_id,
-            "question_genre": self.question_genre
-        }
-        
-        return genre
     
 def create_database():
     Base.metadata.create_all(bind=Engine)

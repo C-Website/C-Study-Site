@@ -21,8 +21,11 @@ def main():
         if(title is None) or (explanation is None) or (title =="") or (explanation ==""):
             raise TextPostValueError("タイトルと説明を入力してください")
         
-        if len(title) >30:
-            raise TextPostValueError("タイトルの文字数が30文字を超えています")
+        if len(title) >20:
+            raise TextPostValueError("タイトルの文字数が20文字を超えています")
+        
+        if len(explanation) > 30:
+            raise TextPostValueError("説明の文字数が30文字を超えています")
         
         session = DB.create_session()
         question_main = DB.Question_main(
