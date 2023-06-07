@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine,Column,Integer,Text
+from sqlalchemy import create_engine,Column,Integer,Text,String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from os import path
@@ -22,7 +22,7 @@ class Question_main(Base):
     
     id = Column(Integer, primary_key=True)
     genre_id = Column(Integer)
-    title = Column(Text)
+    title = Column(String(20))
     explanation = Column(Text)
     
     def to_dict(self):
@@ -47,17 +47,33 @@ class Text_body(Base):
     genre_id = Column(Integer, primary_key=True)
     example_question = Column(Text)
     main_question = Column(Text)
+    code = Column(Text)
     
     def to_dict(self):
         text_body = {
             "id": self.id,
             "genre_id": self.genre_id,
             "example_question": self.example_question,
-            "main_question": self.main_question
+            "main_question": self.main_question,
+            "code": self.code
         }
     
         return text_body
 
+class Genre(Base):
+    
+    __tablename__ = 'genre'
+    
+    genre_id = Column(Integer, primary_key=True,autoincrement=True)
+    question_genre = Column(Text)
+    
+    def to_dict(self):
+        genre = {
+            "genre_id": self.genre_id,
+            "question_genre": self.question_genre
+        }
+        
+        return genre
     
 def create_database():
     Base.metadata.create_all(bind=Engine)
