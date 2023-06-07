@@ -39,9 +39,9 @@ class Question_main(Base):
         return question_main
     
 
-class Text_body(Base):
+class Question_sub(Base):
         
-    __tablename__ = 'text_body'
+    __tablename__ = 'question_sub'
     
     id = Column(Integer, primary_key=True)
     genre_id = Column(Integer, primary_key=True)
@@ -50,7 +50,7 @@ class Text_body(Base):
     code = Column(Text)
     
     def to_dict(self):
-        text_body = {
+        question_sub = {
             "id": self.id,
             "genre_id": self.genre_id,
             "example_question": self.example_question,
@@ -58,7 +58,7 @@ class Text_body(Base):
             "code": self.code
         }
     
-        return text_body
+        return question_sub
 
 class Genre(Base):
     
