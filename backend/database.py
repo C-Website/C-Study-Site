@@ -21,14 +21,12 @@ class Question_main(Base):
     __tablename__ = 'question_main'
     
     id = Column(Integer, primary_key=True)
-    genre_id = Column(Integer)
     title = Column(String(20))
     explanation = Column(String(30))
     
     def to_dict(self):
         question_main = {
             "id":self.id,
-            "genre_id":self.genre_id,
             "title":self.title,
             "explanation":self.explanation
         }
@@ -44,7 +42,6 @@ class Question_sub(Base):
     __tablename__ = 'question_sub'
     
     id = Column(Integer, primary_key=True)
-    genre_id = Column(Integer, primary_key=True)
     example_question = Column(Text)
     main_question = Column(Text)
     code = Column(Text)
@@ -52,7 +49,6 @@ class Question_sub(Base):
     def to_dict(self):
         question_sub = {
             "id": self.id,
-            "genre_id": self.genre_id,
             "example_question": self.example_question,
             "main_question": self.main_question,
             "code": self.code
