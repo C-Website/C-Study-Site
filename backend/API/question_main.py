@@ -34,7 +34,8 @@ def main():
         session = DB.create_session()
         question_data = DB.Question_data(
             title=title,
-            explanation=explanation
+            explanation=explanation,
+            answer=answer
         )
         session.add(question_data)
         session.commit()
@@ -122,6 +123,8 @@ def update():
             question_data.title = title
         if explanation:
             question_data.explanation = explanation
+        if answer:
+            question_data.answer = answer
         session.commit()
         
         return jsonify({
