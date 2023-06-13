@@ -17,9 +17,10 @@ def main():
     try:
         title = request.form.get("title",None,type="str")
         explanation = request.form.get("explanation",None,type="str")
+        answer = request.form.get("answer",None,type="str")
         
-        if(title is None) or (explanation is None) or (title =="") or (explanation ==""):
-            raise TextPostValueError("タイトルと説明を入力してください")
+        if(title is None) or (explanation is None) or (answer is None) or (title =="") or (explanation =="") or (answer ==""):
+            raise TextPostValueError("タイトルと説明と答えを入力してください")
         
         if len(title) >20:
             raise TextPostValueError("タイトルの文字数が20文字を超えています")
@@ -27,12 +28,15 @@ def main():
         if len(explanation) > 30:
             raise TextPostValueError("説明の文字数が30文字を超えています")
         
+        if len(answer) > 256:
+            raise TextPostValueError("答えの文字数が256文字を超えています")
+        
         session = DB.create_session()
-        question_main = DB.Question_main(
+        question_data = DB.Question_data(
             title=title,
             explanation=explanation
         )
-        session.add(question_main)
+        session.add(question_data)
         session.commit()
         
         return jsonify({
@@ -52,11 +56,11 @@ def main():
         }), 500
 
 @api_module.route("/questions")
-def get_main_data():
+def get_data_data():
     try:
         session = DB.create_session()
-        questions_main = session.query(DB.Question_main).all()
-        return jsonify([question_main.to_dict() for question_main in questions_main])
+        questions_data = session.query(DB.Question_data).all()
+        return jsonify([question_data.to_dict() for question_data in questions_data])
     except:
         return jsonify([]), 500
 
@@ -64,13 +68,13 @@ def get_main_data():
 def get_question(_id):
     try:
         session = DB.create_session()
-        question_main = session.query(DB.Question_main).filter(DB.Question_main.id == _id).first()
-        if question_main is None:
+        question_data = session.query(DB.Question_data).filter(DB.Question_data.id == _id).first()
+        if question_data is None:
             raise QuestionNotFoundError("問題が存在しません")
         
         return jsonify({
             "result": True,
-            "question": question_main.to_dict() 
+            "question": question_data.to_dict() 
         })
     except QuestionNotFoundError as e:
         print(e)
@@ -90,27 +94,34 @@ def update():
     try:
         title = request.form.get("title",None,type=str)
         explanation = request.form.get("explanation",None,type=str)
+        answer = request.form.get("answer",None,type=str)
         _id = request.form.get("id",None,type=int)
         
         if _id is None:
             raise TextPostValueError("idを入力してください")
         
-        if (title is None) and (explanation is None) or (title == "") and (explanation == "") and (explanation == ""):
-            raise TextPostValueError("タイトルと説明を入力してください")
+        if (title is None) and (explanation is None) or (answer is None) or (title =="") or (explanation =="") or (answer ==""):
+            raise TextPostValueError("タイトルと説明と答えを入力してください")
         
         if title:
             if len(title) > 20:
                 raise TextPostValueError("タイトルの文字数が20文字を超えています")
         
+        if len(explanation) > 30:
+            raise TextPostValueError("説明の文字数が30文字を超えています")
+        
+        if len(answer) > 256:
+            raise TextPostValueError("答えの文字数が256文字を超えています")
+        
         session = DB.create_session()
-        question_main = session.query(DB.Question_main).filter(DB.Question_main.question.id == _id).first()
-        if question_main is None:
+        question_data = session.query(DB.Question_data).filter(DB.Question_data.question.id == _id).first()
+        if question_data is None:
             raise TextPostValueError("問題がありません")
         
         if title:
-            question_main.title = title
+            question_data.title = title
         if explanation:
-            question_main.explanation = explanation
+            question_data.explanation = explanation
         session.commit()
         
         return jsonify({
@@ -144,11 +155,11 @@ def delete():
             raise TextPostValueError("idを入力してください")
         
         session = DB.create_session()
-        question_main = session.query(DB.Question_main).filter(DB.Question_main.question.id == _id).first()
-        if question_main is None:
+        question_data = session.query(DB.Question_data).filter(DB.Question_data.question.id == _id).first()
+        if question_data is None:
             raise TextPostValueError("問題がありません")
         
-        session.delete(question_main)
+        session.delete(question_data)
         session.commit()
         
         return jsonify({
