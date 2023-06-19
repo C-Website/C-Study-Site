@@ -16,45 +16,43 @@ Engine = create_engine(
 )
 Base = declarative_base()
 
-class Question_main(Base):
+class Question_data(Base):
     
-    __tablename__ = 'question_main'
+    __tablename__ = 'question_data'
     
     id = Column(Integer, primary_key=True)
     title = Column(String(20))
     explanation = Column(String(30))
+    answer = Column(String(256))
     
     def to_dict(self):
-        question_main = {
+        question_data = {
             "id":self.id,
             "title":self.title,
-            "explanation":self.explanation
+            "explanation":self.explanation,
+            "answer":self.answer
         }
         
         if self.explanation:
-            question_main["explanation"] = self.explanation
+            question_data["explanation"] = self.explanation
         
-        return question_main
+        return question_data
     
 
-class Question_sub(Base):
+class Code(Base):
         
-    __tablename__ = 'question_sub'
+    __tablename__ = 'code'
     
     id = Column(Integer, primary_key=True)
-    example_question = Column(Text)
-    main_question = Column(Text)
     code = Column(Text)
     
     def to_dict(self):
-        question_sub = {
+        code = {
             "id": self.id,
-            "example_question": self.example_question,
-            "main_question": self.main_question,
             "code": self.code
         }
     
-        return question_sub
+        return code
     
 def create_database():
     Base.metadata.create_all(bind=Engine)
@@ -65,5 +63,5 @@ def delete_database():
 def create_session():
     return sessionmaker(bind=Engine)()
 
-if __name__ == "__main__":
+if __name__ == "__data__":
     create_database
