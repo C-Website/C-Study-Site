@@ -38,21 +38,6 @@ class Question_data(Base):
         
         return question_data
     
-
-class Code(Base):
-        
-    __tablename__ = 'code'
-    
-    id = Column(Integer, primary_key=True)
-    code = Column(Text)
-    
-    def to_dict(self):
-        code = {
-            "id": self.id,
-            "code": self.code
-        }
-    
-        return code
     
 def create_database():
     Base.metadata.create_all(bind=Engine)
