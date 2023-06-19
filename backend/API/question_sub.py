@@ -13,8 +13,7 @@ def sub(question_sub_table):
     for sub_data in question_sub_table:
         add_sub_data = {
             "title": sub_data.title,
-            "answer": sub_data.answer,
-            "code": sub_data.code
+            "answer": sub_data.answer
         }
         question_sub_data[str(sub_data.id)] = add_sub_data
         
